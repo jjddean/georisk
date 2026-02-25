@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import Map, { NavigationControl, Layer, Source, MapLayerMouseEvent } from 'react-map-gl/mapbox';
+import Map, { NavigationControl, Layer, Source, MapMouseEvent } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 interface RiskMapProps {
@@ -74,7 +74,7 @@ export const RiskMap: React.FC<RiskMapProps> = ({ lanes, scores }) => {
         };
     }, [lanes, scores]);
 
-    const onHover = (event: MapLayerMouseEvent) => {
+    const onHover = (event: MapMouseEvent) => {
         const {
             features,
             point: { x, y }
