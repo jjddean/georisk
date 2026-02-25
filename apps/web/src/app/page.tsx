@@ -30,10 +30,28 @@ export default function Home() {
                         setSelectedLaneId(lanesData[0].id);
                     }
                 } else {
-                    console.warn("API not reachable, using empty state");
+                    throw new Error("Local API offline");
                 }
             } catch (error) {
-                console.error("Using offline mode");
+                console.warn("Using high-fidelity mock data for Vercel demo");
+                // HIGH FIDELITY MOCK FALLBACK
+                const mockLanes = [
+                    { id: 1, origin_port: { name: "Mumbai", longitude: 72.8777, latitude: 19.0760 }, destination_port: { name: "London", longitude: -0.1276, latitude: 51.5074 } },
+                    { id: 2, origin_port: { name: "Shanghai", longitude: 121.4737, latitude: 31.2304 }, destination_port: { name: "Rotterdam", longitude: 4.4777, latitude: 51.9225 } },
+                    { id: 3, origin_port: { name: "Singapore", longitude: 103.8198, latitude: 1.3521 }, destination_port: { name: "New York", longitude: -74.0060, latitude: 40.7128 } },
+                    { id: 4, origin_port: { name: "Dubai", longitude: 55.2708, latitude: 25.2048 }, destination_port: { name: "Hamburg", longitude: 9.9937, latitude: 53.5511 } }
+                ];
+                const mockScores = [
+                    { entityType: 'lane', entityId: 1, score: 82, status: 'watch', breakdown: { customs_friction: 45, weather: 12, zone: 85 } },
+                    { entityType: 'lane', entityId: 2, score: 94, status: 'severe', breakdown: { customs_friction: 88, weather: 40, zone: 95 } },
+                    { entityType: 'lane', entityId: 3, score: 22, status: 'safe', breakdown: { customs_friction: 10, weather: 5, zone: 15 } },
+                    { entityType: 'lane', entityId: 4, score: 45, status: 'watch', breakdown: { customs_friction: 30, weather: 15, zone: 50 } },
+                    { entityType: 'port', entityId: 1, breakdown: { congestion_forecast: 0.8 } },
+                    { entityType: 'port', entityId: 2, breakdown: { congestion_forecast: 0.95 } }
+                ];
+                setLanes(mockLanes);
+                setScores(mockScores);
+                setSelectedLaneId(1);
             } finally {
                 setLoading(false);
             }
