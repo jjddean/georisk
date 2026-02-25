@@ -1,0 +1,45 @@
+
+­ƒö¼ GeoRisk Pro ÔÇö Phase 3 ML Tests
+ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+============================================================
+TEST 6: Risk-Aware Route Deviation (Phase 3)
+============================================================
+
+  Scenario 1: No Risk (Standard Route)
+  Exploring Shanghai (Priority: 0.0, Dist: 0.0, Risk: 0.0)
+    -> Edge to Singapore [Lane 1]: StepDist 3810.4, RiskPenalty 0.0
+    -> Edge to Cape Town [Lane 3]: StepDist 12980.2, RiskPenalty 0.0
+  Exploring Singapore (Priority: 14346.7, Dist: 3810.4, Risk: 0.0)
+    -> Edge to Rotterdam [Lane 2]: StepDist 10536.3, RiskPenalty 0.0
+  Exploring Rotterdam (Priority: 14346.7, Dist: 14346.7, Risk: 0.0)
+  Exploring Shanghai (Priority: 0.0, Dist: 0.0, Risk: 0.0)
+    -> Edge to Singapore [Lane 1]: StepDist 3810.4, RiskPenalty 0.0
+    -> Edge to Cape Town [Lane 3]: StepDist 12980.2, RiskPenalty 0.0
+  Exploring Singapore (Priority: 14346.7, Dist: 3810.4, Risk: 0.0)
+    -> Edge to Rotterdam [Lane 2]: StepDist 10536.3, RiskPenalty 0.0
+  Exploring Rotterdam (Priority: 14346.7, Dist: 14346.7, Risk: 0.0)
+    Selected Path: Shanghai -> Singapore -> Rotterdam
+    Distance:      14346.7 km
+
+  Scenario 2: High Risk (85) on Singapore -> Rotterdam
+  Exploring Shanghai (Priority: 0.0, Dist: 0.0, Risk: 0.0)
+    -> Edge to Singapore [Lane 1]: StepDist 3810.4, RiskPenalty 0.0
+    -> Edge to Cape Town [Lane 3]: StepDist 12980.2, RiskPenalty 0.0
+  Exploring Singapore (Priority: 14346.7, Dist: 3810.4, Risk: 0.0)
+    -> Edge to Rotterdam [Lane 2]: StepDist 10536.3, RiskPenalty 10000.0
+  Exploring Cape Town (Priority: 22617.8, Dist: 12980.2, Risk: 0.0)
+    -> Edge to Rotterdam [Lane 4]: StepDist 9637.7, RiskPenalty 0.0
+  Exploring Rotterdam (Priority: 22617.8, Dist: 22617.8, Risk: 0.0)
+  Exploring Shanghai (Priority: 0.0, Dist: 0.0, Risk: 0.0)
+    -> Edge to Singapore [Lane 1]: StepDist 3810.4, RiskPenalty 0.0
+    -> Edge to Cape Town [Lane 3]: StepDist 12980.2, RiskPenalty 0.0
+  Exploring Singapore (Priority: 14346.7, Dist: 3810.4, Risk: 0.0)
+    -> Edge to Rotterdam [Lane 2]: StepDist 10536.3, RiskPenalty 10000.0
+  Exploring Cape Town (Priority: 22617.8, Dist: 12980.2, Risk: 0.0)
+    -> Edge to Rotterdam [Lane 4]: StepDist 9637.7, RiskPenalty 0.0
+  Exploring Rotterdam (Priority: 22617.8, Dist: 22617.8, Risk: 0.0)
+    ÔØî No alternative path found!
+
+============================================================
+Ô£ù PHASE 3 ISSUES DETECTED
+============================================================

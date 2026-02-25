@@ -1,0 +1,124 @@
+
+­ƒö¼ GeoRisk Pro ÔÇö NLP Pipeline Tests
+ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+============================================================
+TEST 1: Friction Classifier (Rule-Based Mode)
+============================================================
+
+  Ô£ô Test 1: HMRC systems experiencing severe delays at Felixstowe causin...
+    Category: customs_friction (expected: customs_friction) Ô£ô
+    Severity: high (expected: high) Ô£ô
+    Confidence: 0.9
+    Explanation: Matched keywords: hmrc
+
+  Ô£ô Test 2: Hurricane warning issued for Caribbean shipping lanes, ports...
+    Category: weather_force_majeure (expected: weather_force_majeure) Ô£ô
+    Severity: severe (expected: severe) Ô£ô
+    Confidence: 1.0
+    Explanation: Matched keywords: hurricane
+
+  Ô£ô Test 3: OFAC adds 3 vessels to sanctions list affecting Red Sea trad...
+    Category: sanctions_compliance (expected: sanctions_compliance) Ô£ô
+    Severity: severe (expected: severe) Ô£ô
+    Confidence: 1.0
+    Explanation: Matched keywords: ofac
+
+  Ô£ô Test 4: Rotterdam port reports normal operations and steady throughp...
+    Category: none (expected: none) Ô£ô
+    Severity: low (expected: low) Ô£ô
+    Confidence: 0.1
+    Explanation: No friction signals detected
+
+  Ô£ô Test 5: Dock workers announce indefinite strike at Lagos Apapa termi...
+    Category: labor_action (expected: labor_action) Ô£ô
+    Severity: severe (expected: severe) Ô£ô
+    Confidence: 1.0
+    Explanation: Matched keywords: indefinite strike
+
+  Ô£ô Test 6: Port congestion worsens at Chittagong as vessel queue extend...
+    Category: port_disruption (expected: port_disruption) Ô£ô
+    Severity: high (expected: high) Ô£ô
+    Confidence: 1.0
+    Explanation: Matched keywords: port congestion
+
+  Ô£ô Test 7: New tariff increase on Chinese imports announced by US Trade...
+    Category: trade_policy (expected: trade_policy) Ô£ô
+    Severity: high (expected: high) Ô£ô
+    Confidence: 1.0
+    Explanation: Matched keywords: tariff, new tariff
+
+  Ô£ô Test 8: Piracy attack reported near Gulf of Aden, armed robbery on c...
+    Category: conflict_security (expected: conflict_security) Ô£ô
+    Severity: severe (expected: severe) Ô£ô
+    Confidence: 1.0
+    Explanation: Matched keywords: piracy attack
+
+  Results: 8/8 passed
+
+============================================================
+TEST 2: Port Entity Extraction
+============================================================
+
+  Port database: 128 ports, 312 searchable terms
+
+  Ô£ô Test 1: Severe congestion reported at Lagos Apapa terminal, impactin...
+    Extracted: ['Lagos', 'Rotterdam']
+    Expected:  ['Lagos', 'Rotterdam']
+    Corridors: ['africa_west ÔåÆ eu']
+
+  Ô£ô Test 2: HMRC delays at Felixstowe cause backlog for imports from Chi...
+    Extracted: ['Felixstowe', 'Chittagong', 'Karachi']
+    Expected:  ['Felixstowe', 'Chittagong', 'Karachi']
+    Corridors: ['pakistan ÔåÆ uk', 'bangladesh ÔåÆ uk']
+
+  Ô£ô Test 3: Hurricane warning near Kingston Jamaica and Port of Spain Tr...
+    Extracted: ['Kingston', 'Port of Spain']
+    Expected:  ['Kingston', 'Port of Spain']
+    Corridors: ['caribbean ÔåÆ ?']
+
+  Ô£ô Test 4: New tariffs on goods arriving at Newark from Shanghai and Ya...
+    Extracted: ['Newark', 'Shanghai', 'Shenzhen']
+    Expected:  ['Newark', 'Shanghai', 'Shenzhen']
+    Corridors: ['china ÔåÆ usa']
+
+  Ô£ô Test 5: Strike at Mersin port disrupts Turkish exports to Hamburg an...
+    Extracted: ['Mersin', 'Hamburg', 'Antwerp']
+    Expected:  ['Mersin', 'Hamburg', 'Antwerp']
+    Corridors: ['turkey ÔåÆ eu']
+
+  Ô£ô Test 6: Santos port in Brazil reports record throughput for exports ...
+    Extracted: ['Santos', 'Savannah']
+    Expected:  ['Santos', 'Savannah']
+    Corridors: ['brazil ÔåÆ usa']
+
+  Ô£ô Test 7: Mombasa port delays as Kenya dockworkers threaten action...
+    Extracted: ['Mombasa']
+    Expected:  ['Mombasa']
+    Corridors: ['africa_east ÔåÆ ?']
+
+  Ô£ô Test 8: Cat Lai terminal sees congestion spike for Vietnam exports...
+    Extracted: ['Ho Chi Minh City']
+    Expected:  ['Ho Chi Minh City']
+    Corridors: ['vietnam ÔåÆ ?']
+
+  Results: 8/8 passed
+
+============================================================
+TEST 3: Combined Pipeline (Classifier + Extractor)
+============================================================
+
+  Headline: OFAC sanctions warning: vessels flagged near Jebel Ali as customs hold intensifies at Felixstowe for Bangladesh imports from Chittagong
+
+  Friction:
+    Category:   sanctions_compliance
+    Severity:   severe
+    Confidence: 1.0
+
+  Ports: ['Jebel Ali', 'Felixstowe', 'Chittagong']
+  Corridors: ['bangladesh ÔåÆ uk']
+
+  Full signal: {'category': 'sanctions_compliance', 'severity': 'severe', 'confidence': 1.0, 'explanation': 'Matched keywords: customs hold, ofac', 'raw_text': 'OFAC sanctions warning: vessels flagged near Jebel Ali as customs hold intensifies at Felixstowe for Bangladesh imports from Chittagong'}
+
+============================================================
+Ô£ô ALL TESTS PASSED
+============================================================

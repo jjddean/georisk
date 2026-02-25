@@ -1,0 +1,49 @@
+GEO-RISK PRO: APPLICATION DETAILS & TECHNICAL SHOWCASE
+
+CORE PURPOSE
+============
+GeoRisk Pro is a premium geopolitical risk advisory layer tailored for freight forwarders and maritime logistics providers. It enables real-time monitoring of global trade lanes to detect and score threats from conflicts, piracy, sanctions, and extreme weather.
+
+THE "LEAN" ARCHITECTURE (NO-BLOAT STRATEGY)
+===========================================
+One of the core design principles of GeoRisk Pro is its high-efficiency data management.
+
+* Local JSON Storage:
+  Unlike traditional apps that bloat their primary database with thousands of transient records, GeoRisk Pro utilizes a Worker-Side JSON Strategy.
+  - Transient Data: Raw incident records from feeds like ACLED and IMB Piracy Reporting are stored in localized JSON files on the Celery worker.
+  - Benefits:
+    - Speed: In-process JSON reads for risk scoring are extremely fast (often <10ms).
+    - Database Health: The main Postgres database remains clean, only storing "System of Record" data like defined Lanes, Assets, and final Risk Scores.
+    - Storage Efficiency: Drastically reduces Postgres disk footprint and index maintenance overhead.
+
+* On-Demand Processing:
+  Dataset snapshots are loaded into memory only when needed for a specific assessment. This "Just-In-Time" ingestion model allows the system to scale across global fleets without constant memory saturation.
+
+HOW IT WORKS (TECHNICAL FLOW)
+=============================
+
+1. Unified Data Ingestion (apps/worker/feeds)
+   The worker manages a fleet of specialized ingestors that normalize diverse data streams into a unified internal format:
+   - sanctions.py: Monitors OFAC, UN, and EU vessel/entity blacklists.
+   - weather.py: Ingests real-time atmospheric and oceanic risk constraints.
+   - news.py: Filters global intel for early signals of port disruption.
+
+2. The Assessment Engine (apps/worker/risk)
+   The MaritimeRiskManager performs the critical "Heavy Lifting":
+   - Geospatial Intersection: Calculates if a vessel's planned lane overlaps with active risk event geometries (polygons/circles).
+   - Evidence Trails: Every score is accompanied by a transparent "Evidence Trail" citing the specific source and confidence level for the assessment.
+
+3. The Scoring Engine (apps/worker/engine/scoring.py)
+   Risk is quantified on a 0-100 scale using a weighted severity model:
+   - SEVERE (50 pts): Active kinetic combat or total route suspension.
+   - HIGH (30 pts): Serious advisory or sanctioned entity proximity.
+   - MEDIUM (15 pts): Cautionary markers or moderate weather disruption.
+   - LOW (5 pts): Standard baseline monitoring.
+
+CORE FUNCTIONALITY
+==================
+- GeoRisk Navigator: An intuitive dashboard UI (apps/web) for visualizing portfolio-wide risk.
+- Enterprise-Grade Advisory: Real-time signals alerting users to critical route changes.
+- Decision Support: Provides "Alternative Logic" to help operators pivot routes when risk scores exceed safe thresholds.
+
+GeoRisk Pro - Decision-ready maritime intel without the infrastructure bloat.

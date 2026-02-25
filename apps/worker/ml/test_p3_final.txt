@@ -1,0 +1,22 @@
+
+­ƒö¼ GeoRisk Pro ÔÇö Phase 3 ML Tests
+ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+============================================================
+TEST 6: Risk-Aware Route Deviation (Phase 3)
+============================================================
+
+  Scenario 1: No Risk (Standard Route)
+    Selected Path: Shanghai -> Singapore -> Rotterdam
+    Distance:      14346.7 km
+
+  Scenario 2: High Risk (85) on Singapore -> Rotterdam
+    ­ƒöÑ RISK DETECTED ON STANDARD ROUTE
+    Safest Route:   Shanghai -> Cape Town -> Rotterdam
+    Safest Cost:    22617.83
+    Standard Route: Shanghai -> Singapore -> Rotterdam
+    Standard Cost:  14346.7
+    Deviation Successful: Ô£à YES
+
+============================================================
+Ô£ô PHASE 3 VERIFIED
+============================================================

@@ -1,0 +1,32 @@
+C:\Users\jason\georisk-1\apps\worker\ml\test_congestion_pipeline.py:33: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  starts_at=datetime.utcnow(),
+C:\Users\jason\georisk-1\apps\worker\ml\test_congestion_pipeline.py:41: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  starts_at=datetime.utcnow(),
+C:\Users\jason\georisk-1\apps\worker\ml\test_congestion_pipeline.py:49: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  starts_at=datetime.utcnow(),
+
+­ƒö¼ GeoRisk Pro ÔÇö Phase 2 ML Tests
+ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+============================================================
+TEST 4: Hotspot Accumulation (Phase 2)
+============================================================
+
+  Port: Shanghai
+  Recent Events: 3
+  Intensity Score: 0.65 (0.0-1.0)
+  Primary Drivers: ['port_disruption', 'weather_force_majeure', 'customs_friction']
+  Status: ­ƒöÑ HOTSPOT DETECTED
+  Scoring Penalty: +20
+
+============================================================
+TEST 5: Congestion Forecasting (Phase 2)
+============================================================
+
+  Scenario: Strike + Customs Friction at Felixstowe
+    Current Level: medium
+    Trend:         increasing
+    Explanation:   [Rule-based] Multiple medium/high events suggests emerging bottlenecks.
+
+============================================================
+Ô£ô PHASE 2 VERIFIED
+============================================================
